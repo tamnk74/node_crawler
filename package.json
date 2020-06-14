@@ -1,0 +1,28 @@
+{
+  "name": "node_crawler",
+  "version": "1.0.0",
+  "description": "A sample crawler app by node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamnk74/event_management.git"
+  },
+  "keywords": [
+    "crawler"
+  ],
+  "author": "tamnk74",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tamnk74/event_management/issues"
+  },
+  "homepage": "https://github.com/tamnk74/event_management#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "firebase-admin": "^8.12.1",
+    "js-file-download": "^0.4.12"
+  }
+}
