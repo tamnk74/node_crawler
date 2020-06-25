@@ -35,22 +35,19 @@ const getFileNameFromLink = async (link) => {
   }
 }
 
-// axios.get(url).then(async (res) => {
-//   const html = res.data;
-//   const $ = cheerio.load(html);
-//   const links = $('table > tbody > tr a');
-//   const linkTails = [];
-//   links.each(function () {
-//     const text = $(this).text();
-//     linkTails.push($(this).attr('href'));
-//   });
-//   let i = 0;
-//   while (linkTails.length) {
-//     await Promise.all(linkTails.splice(20).map(async link => {
-//       const path = await getFileNameFromLink(link);
-//       if (path) {
-//         await downloadFile(path)
-//       }
-//     }));
-//   }
-// }).catch(err => console.log(err))
+axios.get(url).then(async (res) => {
+  const html = res.data;
+  const $ = cheerio.load(html);
+  const links = $('table > tbody > tr a');
+  const linkTails = [];
+  links.each(function () {
+    const text = $(this).text();
+    linkTails.push($(this).attr('href'));
+  });
+  await linkTails.reduce((rs, link) => rs.then(async () => {
+    const path = await getFileNameFromLink(link);
+    if (path) {
+      await downloadFile(path)
+    }
+  }), Promise.resolve())
+}).catch(err => console.log(err))
